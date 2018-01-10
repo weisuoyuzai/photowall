@@ -1,5 +1,8 @@
 <template>
-  <index></index>
+  <router-view>
+    <index></index>
+  </router-view>
+
 </template>
 
 <script>

@@ -7,6 +7,7 @@
 <script>
     import BScroll from 'better-scroll';
     export default {
+      name:'scroll',
       data(){
         return{
           scroll:null
@@ -15,6 +16,10 @@
       props:{
         data:{
           default:null
+        },
+        scrollDera:{
+          type:String,
+          default:'v'
         }
       },
       mounted(){
@@ -24,7 +29,10 @@
       },
       methods:{
         init(){
-          this.scroll=new BScroll(this.$refs.wrapper);
+          this.scroll=new BScroll(this.$refs.wrapper,{
+            scrollX:this.scrollDera=='h'?true:false,
+            ScrollY:this.scrollDera=='v'?true:false
+          });
         },
         refresh(){
           this.scroll&&this.scroll.refresh();

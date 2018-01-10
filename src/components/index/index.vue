@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+      <div class="header">
+        <m-header></m-header>
+      </div>
       <m-image :imgData="data" class="image-list"></m-image>
     </div>
 </template>
@@ -7,6 +10,7 @@
 <script>
     import mImage from 'base/image/image';
     import scroll from 'base/scroll/scroll';
+    import mHeader from 'components/header/header';
     export default {
       data(){
         return{
@@ -15,7 +19,8 @@
       },
       components:{
         mImage,
-        scroll
+        scroll,
+        mHeader
       },
       mounted(){
         setTimeout(()=>{
@@ -37,7 +42,7 @@
     width 100%
     height: 100%
     position fixed
-    top:0
+    top:40px
     left:0
     .image-list
       width 100%

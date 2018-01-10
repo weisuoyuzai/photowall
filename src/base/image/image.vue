@@ -1,6 +1,6 @@
 <template>
     <div>
-      <scroll :data="imgData" class="image-wrapper" v-if="imgData">
+      <scroll :data="imgData" class="image-wrapper" v-if="imgData" :scrollDera="'v'">
         <!--<div class="wrapper">-->
           <!--<div v-for="item in imgData">-->
             <!--<img :src="'https://api.forgiveyu.com/'+item.path" alt="">-->
@@ -10,7 +10,13 @@
           <waterfall :line-gap="getRealHalfWidth" auto-resize="true">
             <waterfall-slot v-for="item in imgData" :width="getHalfWidth" :height="resetHeight(item.height)">
               <div class="item">
-                <img :src="'https://api.forgiveyu.com/'+item.path" alt="" class="image-item">
+                <div class="item-detail">
+                  <img :src="'https://api.forgiveyu.com/'+item.path" alt="" class="image-item">
+                  <div class="btn-group" ref="btngroup">
+                    <a href="#" class="btn-wrapper"><i class="icon-like"></i></a>
+                    <a href="#" class="btn-wrapper"><i class="icon-comment"></i></a>
+                  </div>
+                </div>
               </div>
             </waterfall-slot>
           </waterfall>
@@ -42,7 +48,7 @@
         methods:{
           resetHeight(height){
             let x=(document.documentElement.clientWidth-10)/2/200;
-            return height*x;
+            return height*x+40;
           },
 
         },
@@ -61,9 +67,44 @@
     height: 100% !important
     .item{
       padding 5px
-      .image-item{
-        width 100%
+      .item-detail{
+        border 1px solid #d1d1d1
+        border-radius 8px;
+        overflow hidden
+        box-shadow: 0px 5px 15px #888888;
+        .image-item{
+          width 100%
+        }
+        .btn-group{
+          width 100%;
+          height 40px
+          display block
+          display flex
+          flex-direction row
+          .btn-wrapper{
+            display block
+            width 50%
+            height 100%
+            .icon-like{
+              display block
+              background url("./like_icon.png") no-repeat;
+              background-size 30px 30px
+              background-position center
+              width 100%;
+              height 40px
+            }
+            .icon-comment{
+              display block
+              background url("./commit.png") no-repeat;
+              background-size 30px 30px
+              background-position center
+              width 100%;
+              height 40px
+            }
+          }
+        }
       }
+
     }
 
   .loading
