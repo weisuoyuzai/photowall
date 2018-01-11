@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="img-list">
       <scroll :data="imgData" class="image-wrapper" v-if="imgData" :scrollDera="'v'">
         <!--<div class="wrapper">-->
           <!--<div v-for="item in imgData">-->
@@ -11,7 +11,7 @@
             <waterfall-slot v-for="item in imgData" :width="getHalfWidth" :height="resetHeight(item.height)">
               <div class="item">
                 <div class="item-detail">
-                  <img :src="'https://api.forgiveyu.com/'+item.path" alt="" class="image-item">
+                  <img :src="'https://api.forgiveyu.com/'+item.path" alt="" class="image-item" v-on:click="goDetail(item.path)">
                   <div class="btn-group" ref="btngroup">
                     <a href="#" class="btn-wrapper"><i class="icon-like"></i></a>
                     <a href="#" class="btn-wrapper"><i class="icon-comment"></i></a>
@@ -45,26 +45,53 @@
             return (document.documentElement.clientWidth)/2
           }
         },
+        mounted(){
+          setTimeout(()=>{
+            this.getData();
+          },20)
+        },
         methods:{
           resetHeight(height){
             let x=(document.documentElement.clientWidth-10)/2/200;
             return height*x+40;
           },
-
+          goDetail(path){
+            path=path.replace(/^thumb\/thumb_/,'');
+            this.$router.push(`/detail/${path}`);
+          },
+          getData(){
+            this.$http.jsonp('https://api.forgiveyu.com/showimg.php',{jsonp:'callback'}).then((res)=>{
+              this.imgData=res.data;
+            })
+          }
         },
-        props:{
-          imgData:{
-            type:Array,
-            default:[]
+        data(){
+          return {
+            imgData:[]
           }
         }
+        // props:{
+        //   imgData:{
+        //     type:Array,
+        //     default:function () {
+        //       return [];
+        //     }
+        //   }
+        // }
     }
 </script>
 
 <style scoped lang="stylus">
+  .img-list{
+    width 100%
+    height 100%
+  }
   .image-wrapper
     width 100%
     height: 100% !important
+    .wrapper{
+      padding-bottom 50px;
+    }
     .item{
       padding 5px
       .item-detail{
@@ -92,6 +119,7 @@
               background-position center
               width 100%;
               height 40px
+              border-right 1px solid #d1d1d1
             }
             .icon-comment{
               display block

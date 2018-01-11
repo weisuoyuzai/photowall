@@ -3,7 +3,12 @@
       <div class="header">
         <m-header></m-header>
       </div>
-      <m-image :imgData="data" class="image-list"></m-image>
+      <keep-alive>
+        <router-view>
+          <m-image :imgData="data" class="image-list"></m-image>
+        </router-view>
+      </keep-alive>
+
     </div>
 </template>
 
@@ -22,18 +27,12 @@
         scroll,
         mHeader
       },
-      mounted(){
-        setTimeout(()=>{
-          this.getData();
-        },20)
-      },
-      methods:{
-        getData(){
-          this.$http.jsonp('https://api.forgiveyu.com/showimg.php',{jsonp:'callback'}).then((res)=>{
-            this.data=res.data;
-          })
-        }
-      }
+      // mounted(){
+      //   setTimeout(()=>{
+      //     this.getData();
+      //   },20)
+      // },
+
     }
 </script>
 
@@ -42,7 +41,7 @@
     width 100%
     height: 100%
     position fixed
-    top:40px
+    top:50px
     left:0
     .image-list
       width 100%

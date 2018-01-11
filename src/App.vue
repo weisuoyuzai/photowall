@@ -1,8 +1,9 @@
 <template>
-  <router-view>
-    <index></index>
-  </router-view>
-
+  <keep-alive>
+    <!--<router-view>-->
+        <index></index>
+    <!--</router-view>-->
+  </keep-alive>
 </template>
 
 <script>
@@ -15,6 +16,8 @@
   }
 </script>
 
-<style>
-
+<style scoped lang="stylus">
+  body{
+    height 100%
+  }
 </style>
