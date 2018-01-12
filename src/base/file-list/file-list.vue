@@ -6,10 +6,10 @@
           <div class="middle">
             <p class="filename" ref="filename">{{item.name}}</p>
             <div class="progress" ref="progress">
-              <div class="progress-active"></div>
+              <div class="progress-active" ref="progressActive"></div>
             </div>
           </div>
-          <span class="jindu">0%</span>
+          <span class="jindu" ref="jindu">0%</span>
         </div>
       </div>
 
@@ -26,6 +26,9 @@
         props:{
           data:{
             default:{}
+          },
+          allfileuploadComplete:{
+            default:false
           }
         },
         mounted(){
@@ -45,6 +48,7 @@
               this.fileData.push(this.data[i]);
             }
             this.$emit('filechange',this.fileData);
+            this.$emit('progressNum',this.$refs);
             console.log(this.fileData);
             setTimeout(()=>{
               let clientWidth=document.documentElement.clientWidth;
@@ -57,6 +61,11 @@
                 }
               }
             },20)
+          },
+          allfileuploadComplete(newval){
+            if(newval){
+              this.fileData=[];
+            }
           }
         }
     }
@@ -98,7 +107,7 @@
             width 100%
             height 15px
             background lightgreen
-            transition all 0.2s
+            transition all 0.1s
           }
         }
       }

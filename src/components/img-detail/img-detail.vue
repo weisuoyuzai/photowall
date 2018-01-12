@@ -19,7 +19,7 @@
                   </a>
                 </div>
                 <div class="like" v-show="!imgerror">
-                  <a :href="'https://api.forgiveyu.com/img/'+imgName" :download="imgName">
+                  <a href="#">
                     <div class="like-wrapper">
                       <i class="icon-like"></i>
                       <p>喜欢</p>
@@ -27,7 +27,7 @@
                   </a>
                 </div>
                 <div class="commentBtn" v-show="!imgerror">
-                  <a :href="'https://api.forgiveyu.com/img/'+imgName" :download="imgName">
+                  <a href="#">
                     <div class="commentBtn-wrapper">
                       <i class="icon-comment"></i>
                       <p>评论</p>
@@ -67,7 +67,6 @@
       mounted(){
         setTimeout(()=>{
           this.imgName=this.$route.params.name;
-          console.log(this.$route.params.name);
         },20)
       },
       deactivated(){

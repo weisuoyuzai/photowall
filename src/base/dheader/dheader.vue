@@ -35,7 +35,7 @@
         clear: both
       }
       .icon-back{
-        background url("./back.png") no-repeat
+        background url('./back.png') no-repeat
         background-size 40px 40px
         width 40px;
         height 40px;

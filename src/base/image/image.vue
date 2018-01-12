@@ -1,5 +1,6 @@
 <template>
     <div class="img-list">
+      <loading class="loading" v-show="!imgData"></loading>
       <scroll :data="imgData" class="image-wrapper" v-if="imgData" :scrollDera="'v'">
         <!--<div class="wrapper">-->
           <!--<div v-for="item in imgData">-->
@@ -11,7 +12,7 @@
             <waterfall-slot v-for="item in imgData" :width="getHalfWidth" :height="resetHeight(item.height)">
               <div class="item">
                 <div class="item-detail">
-                  <img :src="'https://api.forgiveyu.com/'+item.path" alt="" class="image-item" v-on:click="goDetail(item.path)">
+                  <img v-lazy="'https://api.forgiveyu.com/'+item.path" alt="" class="image-item" v-on:click="goDetail(item.path)">
                   <div class="btn-group" ref="btngroup">
                     <a href="#" class="btn-wrapper"><i class="icon-like"></i></a>
                     <a href="#" class="btn-wrapper"><i class="icon-comment"></i></a>
@@ -22,7 +23,6 @@
           </waterfall>
         </div>
       </scroll>
-      <loading class="loading" v-show="!imgData"></loading>
     </div>
 </template>
 
@@ -139,6 +139,7 @@
     position: fixed;
     top 50%
     left:50%
+    z-index: 100
     margin-top -50px
     margin-left -50px
 </style>

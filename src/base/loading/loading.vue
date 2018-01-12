@@ -2,14 +2,19 @@
   <div>
     <div class="loading-wrapper">
       <img src="./loading.gif" alt="">
-      <p>加载中</p>
+      <p>{{text}}</p>
     </div>
   </div>
 </template>
 
 <script>
     export default {
-
+      props:{
+        text:{
+          type:String,
+          default:'加载中'
+        }
+      }
     }
 </script>
 

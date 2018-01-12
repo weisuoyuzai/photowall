@@ -4,6 +4,8 @@ import imgDetail from 'components/img-detail/img-detail';
 import mImage from 'base/image/image';
 import myInfo from 'components/my-info/my-info';
 import upload from 'components/upload/upload';
+import login from 'components/login/login';
+import reg from 'components/reg/reg';
 
 Vue.use(Router)
 
@@ -24,6 +26,14 @@ export default new Router({
     {
       path:'/upload',
       component:upload
+    },
+    {
+      path:'/login',
+      component:login
+    },
+    {
+      path:'/reg',
+      component:reg
     },
     {
       path: '/detail',

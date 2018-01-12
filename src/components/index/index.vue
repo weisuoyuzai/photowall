@@ -5,7 +5,7 @@
       </div>
       <keep-alive>
         <router-view>
-          <m-image :imgData="data" class="image-list"></m-image>
+        <m-image :imgData="data" class="image-list"></m-image>
         </router-view>
       </keep-alive>
 
